@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "算法/数学/集合论/容斥原理.md",
+                "file": "算法/数学/计算几何/判断两线段相交&求交点.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "容斥原理"
+              "title": "判断两线段相交&求交点"
             }
           }
         ]
@@ -96,7 +96,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "算法/数学/集合论/容斥原理.md",
+                "file": "算法/数学/计算几何/判断两线段相交&求交点.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -188,6 +188,8 @@
   },
   "active": "79023390901109fc",
   "lastOpenFiles": [
+    "算法/数学/计算几何/求n边形面积.md",
+    "算法/数学/集合论/容斥原理.md",
     "算法/数学/集合论/枚举子集.md",
     "算法/数学/计算几何/判断两线段相交&求交点.md",
     "算法/数学/计算几何/叉积.md",
@@ -212,8 +214,6 @@
     "算法/博弈/SG定理.md",
     "算法/博弈/SG函数.md",
     "算法/博弈/威佐夫博弈（Wythoff game）.md",
-    "算法/博弈/尼姆博弈（Nim game）.md",
-    "算法/博弈/斐波那契博弈（Fibonacci game）.md",
     "算法/基础算法与思想/贪心",
     "算法/基础算法与思想/二分",
     "算法/基础算法与思想",
