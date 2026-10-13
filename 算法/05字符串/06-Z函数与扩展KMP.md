@@ -18,21 +18,21 @@ KMP 关注“以当前位置结尾的文本后缀匹配了模式前缀多少”�
 
 ## Z 的定义与复用区间
 
-z[i]=LCP(pattern,pattern[i..])。本篇规定 z[0]=m，其他资料有设为 0 的版本，只是约定不同，做加权和时会影响答案。维护 `[left,right)`：pattern[left..right) 与 pattern[0..right−left) 相同，是之前求过的最靠右匹配区间。
+$z[i]=\operatorname{LCP}(\mathrm{pattern},\mathrm{pattern}[i\ldots ])$。本篇规定 $z[0]=m$，其他资料有设为 0 的版本，只是约定不同，做加权和时会影响答案。维护 `[left,right)`：$\mathrm{pattern}[\mathrm{left}\ldots\mathrm{right})$ 与 $\mathrm{pattern}[0\ldots \mathrm{right}-\mathrm{left})$ 相同，是之前求过的最靠右匹配区间。
 
-若 i<right，则当前字符位置对应前缀中的 i−left，可以复用 `min(z[i−left],right−i)`。z[i−left] 超过 right−i 时只保证已知区间内部分；区间外继续实际比较。i>=right 从 0 起步。
+若 $i<\mathrm{right}$，则当前字符位置对应前缀中的 $i-\mathrm{left}$，可以复用 `min(z[i−left],right−i)`。$z[i-\mathrm{left}]$ 超过 $\mathrm{right}-i$ 时只保证已知区间内部分；区间外继续实际比较。$i\ge \mathrm{right}$ 从 0 起步。
 
-模式 `ababa` 的 Z 为 `[5,0,3,0,1]`：i=2 可匹配 aba，维护 [2,5)；i=3 复用 z[1]=0；i=4 复用 z[2]=3 但剩余窗口只有 1，初值只能是 1。
+模式 `ababa` 的 Z 为 `[5,0,3,0,1]`：$i=2$ 可匹配 aba，维护 $[2,5)$；$i=3$ 复用 $z[1]=0$；$i=4$ 复用 $z[2]=3$ 但剩余窗口只有 1，初值只能是 1。
 
 ## 扩展 KMP 在文本上复用什么
 
-extended[i]=LCP(pattern,text[i..])。维护文本中的 `[left,right)` 与模式前缀相同；在该区间内仍使用**模式的 z[i−left]**，不是随便搬 extended[i−left]。因为已知相同区间的参照串是 pattern。
+$\mathrm{extended}[i]=\operatorname{LCP}(\mathrm{pattern},\mathrm{text}[i\ldots ])$。维护文本中的 `[left,right)` 与模式前缀相同；在该区间内仍使用**模式的 $z[i-\mathrm{left}]$**，不是随便搬 $\mathrm{extended}[i-\mathrm{left}]$。因为已知相同区间的参照串是 pattern。
 
-文本 `ababc`、模式 `aba`：extended 为 `[3,0,2,0,0]`。起点 2 的文本后缀 abc 与 aba 只同 ab，长度 2；起点 0 长度 3 等于模式长度，是完整出现。i<right 时 i−left<m，参照 z 下标有效。
+文本 `ababc`、模式 `aba`：extended 为 `[3,0,2,0,0]`。起点 2 的文本后缀 abc 与 aba 只同 ab，长度 2；起点 0 长度 3 等于模式长度，是完整出现。$i<\mathrm{right}$ 时 $i-\mathrm{left}<m$，参照 z 下标有效。
 
 ## 完整教学模板
 
-输入文本、模式两行；文本长 0..10^6，模式长 1..10^6，按字节，可含空格。输出模式的 z 数组、文本的 extended 数组，各一行。静态容量分别容纳两串，模式必须非空。文本为空时第二行为空；只找出现可选所有 extended[i]==m 的 i。
+输入文本、模式两行；文本长 $0\ldots 10^{6}$，模式长 $1\ldots 10^{6}$，按字节，可含空格。输出模式的 z 数组、文本的 extended 数组，各一行。静态容量分别容纳两串，模式必须非空。文本为空时第二行为空；只找出现可选所有 `extended[i]==m` 的 i。
 
 ```cpp
 #include <bits/stdc++.h>
@@ -134,7 +134,7 @@ aba
 
 维护区间内文本与模式前缀完全相同，把当前位置映射到模式位置，再用 Z 中已经证明的匹配长度给出安全下界。while 只对下界之外未知字符进行比较，停止时恰好达到真实 LCP。两串下标与模式长度均作界限检查。
 
-模式 Z O(m)、文本扩展 O(n)，总 O(n+m) 时间、O(n+m) 辅助数组；固定容量实际分配另计。全相同字符、模式比文本长、起点在区间边缘、多个匹配都值得手算。
+模式 Z $O(m)$、文本扩展 $O(n)$，总 $O(n+m)$ 时间、$O(n+m)$ 辅助数组；固定容量实际分配另计。全相同字符、模式比文本长、起点在区间边缘、多个匹配都值得手算。
 
 
 ## 练习与复盘
@@ -143,7 +143,7 @@ aba
 
 ## 扩展选读：线性与命名
 
-若复用匹配严格在窗口内部，后续比较至多发现一次失败；若复用到窗口边缘，新的成功比较推进候选 right，right 单调不回退，累计成功扩展 O(n)。区间外从当前 i 开始，候选边界也不比旧 right 小，每个位置另至多一次失败，所以总线性。Z 模式构造同理。
+若复用匹配严格在窗口内部，后续比较至多发现一次失败；若复用到窗口边缘，新的成功比较推进候选 right，right 单调不回退，累计成功扩展 $O(n)$。区间外从当前 i 开始，候选边界也不比旧 right 小，每个位置另至多一次失败，所以总线性。Z 模式构造同理。
 
 “扩展 KMP”常也称 ex-KMP，算法主要是 Z 区间复用，并不直接使用 pi 的失配链。洛谷 P5410 的官方题面本次未能读取，本轮不添加未经核验的测试链接；本篇自编数组输出不声称对应其平台接口。
 
