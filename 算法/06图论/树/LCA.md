@@ -1,1 +1,0 @@
-[模板](https://atcoder.jp/contests/abc465/tasks/abc465_d)
