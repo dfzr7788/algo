@@ -21,7 +21,7 @@
 
 例 $x\equiv 2 \bmod 6$，$x\equiv 5 \bmod 9$：$g=3$，差 3 可整除，$6t\equiv 3 \bmod 9$，$t\equiv 2 \bmod 3$，得到 $x\equiv 14 \bmod 18$。改为余 4 时差 2，立即冲突。
 
-输入 n，接着 n 行 m a，$1\le n\le 100000$、$1\le m\le 10^{12}$、$0\le a\le 10^{12}$，保证全部模数 $\lcm \le 10^{18}$。输出最小非负解，无解输出 NO SOLUTION。与 [洛谷 P4777](https://www.luogu.com.cn/problem/P4777) 同模型，该题保证有解；教学程序额外处理冲突。
+输入 n，接着 n 行 m a，$1\le n\le 100000$、$1\le m\le 10^{12}$、$0\le a\le 10^{12}$，保证全部模数 $\operatorname{lcm} \le 10^{18}$。输出最小非负解，无解输出 NO SOLUTION。与 [洛谷 P4777](https://www.luogu.com.cn/problem/P4777) 同模型，该题保证有解；教学程序额外处理冲突。
 
 ## 实现安全与复杂度
 
